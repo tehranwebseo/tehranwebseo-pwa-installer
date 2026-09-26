@@ -33,7 +33,9 @@ Developed by **Tehran Web SEO**.
 - Clean settings with sanitization-focused implementation
 
 Custom trigger example:
-<button type="button" id="pwa-install-trigger">Install</button>
+```html
+<button type="button" id="
+```
 
 ### ⚙️ Compatibility Notes
 - Requires **HTTPS** for install eligibility
