@@ -2,19 +2,19 @@
 
 # Floating PWA Installer for WordPress
 
-[![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759B?logo=wordpress&logoColor=white)](#)
-[![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)](#)
+![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759B?logo=wordpress&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)
 [![License: GPLv2+](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 
-<a href="#english">🇬🇧 English</a> | <a href="#فارسی">🇮🇷 فارسی</a>
+[🇬🇧 English](#english) | [🇮🇷 فارسی](#persian)
 
 </div>
 
 ---
 
-## English
-
 <a id="english"></a>
+
+## 🇬🇧 English
 
 Turn your website into an installable app experience with a floating install button, custom triggers, and optional safe PWA endpoints.  
 Developed by **Tehran Web SEO**.
@@ -80,9 +80,9 @@ Developed by **Tehran Web SEO**.
 
 ---
 
-## فارسی
+<a id="persian"></a>
 
-<a id="فارسی"></a>
+## 🇮🇷 فارسی
 
 افزونه **Floating PWA Installer** سایت وردپرسی شما را به تجربه‌ای قابل نصب (App-like) تبدیل می‌کند:
 - دکمه شناور نصب
@@ -105,6 +105,7 @@ Developed by **Tehran Web SEO**.
 - تنظیمات با رویکرد Sanitization
 
 نمونه Trigger سفارشی:
+
 html
 <button type="button" id="pwa-install-trigger">نصب اپلیکیشن</button>
 
