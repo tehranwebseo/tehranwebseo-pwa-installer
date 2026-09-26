@@ -33,7 +33,6 @@ Developed by **Tehran Web SEO**.
 - Clean settings with sanitization-focused implementation
 
 Custom trigger example:
-```html
 <button type="button" id="pwa-install-trigger">Install</button>
 
 ### ⚙️ Compatibility Notes
@@ -106,7 +105,6 @@ Developed by **Tehran Web SEO**.
 
 نمونه Trigger سفارشی:
 
-html
 <button type="button" id="pwa-install-trigger">نصب اپلیکیشن</button>
 
 ### ⚙️ نکات سازگاری
