@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+node_modules/
+vendor/
+composer.lock
+phpcs.xml
+phpcs.xml.dist
+*.log
+*.zip

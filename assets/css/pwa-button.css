@@ -1,0 +1,40 @@
+#fpwai-button {
+	position: fixed;
+	z-index: 99990;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+	max-inline-size: calc(100vw - 2rem);
+	min-block-size: 44px;
+	padding: .75rem 1.25rem;
+	border: 0;
+	background: var(--fpwai-bg, #2563eb);
+	color: var(--fpwai-fg, #fff);
+	box-shadow: 0 4px 20px #0003;
+	font: inherit;
+	line-height: 1.5;
+	text-align: center;
+	cursor: pointer;
+}
+#fpwai-button[hidden], [data-fpwai-installed][hidden] { display: none !important; }
+#fpwai-button:hover { background: var(--fpwai-hover-bg, #1d4ed8); color: var(--fpwai-hover-fg, #fff); transform: translateY(-2px); }
+#fpwai-button:focus-visible, #fpwai-dialog button:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+#fpwai-button:disabled { cursor: wait; opacity: .7; }
+#fpwai-button svg { flex: 0 0 auto; }
+#fpwai-dialog {
+	box-sizing: border-box;
+	max-inline-size: min(30rem, calc(100vw - 2rem));
+	padding: 1.5rem;
+	border: 1px solid #ccc;
+	border-radius: .75rem;
+	background: #fff;
+	color: #172033;
+	font: inherit;
+	text-align: start;
+}
+#fpwai-dialog::backdrop { background: #0008; }
+#fpwai-dialog button { min-block-size: 44px; padding: .5rem 1rem; font: inherit; cursor: pointer; }
+@media (display-mode: standalone), (display-mode: fullscreen), (display-mode: minimal-ui) {
+	#fpwai-button { display: none !important; }
+}
