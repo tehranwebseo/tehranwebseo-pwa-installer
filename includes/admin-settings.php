@@ -1,6 +1,17 @@
 <?php
+/**
+ * Admin settings registration and rendering.
+ *
+ * @package TehranWebSEO\PWAInstaller
+ */
+
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Return settings field schema.
+ *
+ * @return array
+ */
 function fpwai_fields() {
 	$corners = array(
 		'bottom-end'   => __( 'Bottom end', 'tehranwebseo-pwa-installer' ),
@@ -8,6 +19,7 @@ function fpwai_fields() {
 		'top-end'      => __( 'Top end', 'tehranwebseo-pwa-installer' ),
 		'top-start'    => __( 'Top start', 'tehranwebseo-pwa-installer' ),
 	);
+
 	return array(
 		'enabled'             => array( 'checkbox', __( 'Enable installer', 'tehranwebseo-pwa-installer' ), true ),
 		'manage_manifest'     => array( 'checkbox', __( 'Provide manifest and service worker', 'tehranwebseo-pwa-installer' ), true ),
@@ -49,41 +61,65 @@ function fpwai_fields() {
 	);
 }
 
+/**
+ * Normalize and sanitize settings input.
+ *
+ * @param mixed $input      Raw input.
+ * @param bool  $submission Whether input comes from settings submission.
+ * @return array
+ */
 function fpwai_normalize_settings( $input, $submission = false ) {
 	$input  = is_array( $input ) ? $input : array();
 	$output = array();
+
 	foreach ( fpwai_fields() as $key => $field ) {
-		$value = $input[ $key ] ?? ( $submission && 'checkbox' === $field[0] ? false : $field[2] );
+		$value = isset( $input[ $key ] ) ? $input[ $key ] : ( ( $submission && 'checkbox' === $field[0] ) ? false : $field[2] );
+
 		if ( ! is_scalar( $value ) ) {
 			$value = $field[2];
 		}
+
 		switch ( $field[0] ) {
 			case 'checkbox':
 				$value = in_array( $value, array( true, 1, '1' ), true );
 				break;
+
 			case 'number':
 				$value = is_numeric( $value ) ? max( $field[3][0], min( $field[3][1], (int) $value ) ) : $field[2];
 				break;
+
 			case 'color':
-				$value = sanitize_hex_color( (string) $value ) ?: $field[2];
+				$sanitized = sanitize_hex_color( (string) $value );
+				$value     = $sanitized ? $sanitized : $field[2];
 				break;
+
 			case 'select':
 				$value = isset( $field[3][ $value ] ) ? $value : $field[2];
 				break;
+
 			default:
 				$value = sanitize_text_field( (string) $value );
+
 				if ( 'trigger_id' === $key ) {
 					$value = preg_replace( '/[\s#<>"\x27]/u', '', $value );
 				} elseif ( '' === $value ) {
 					$value = $field[2];
 				}
 		}
+
 		$output[ $key ] = $value;
 	}
+
 	return $output;
 }
 
 add_action( 'admin_init', 'fpwai_register_settings' );
+
+/**
+ * Register plugin settings and fields.
+ *
+ * @return void
+ */
 function fpwai_register_settings() {
 	register_setting(
 		'fpwai',
@@ -94,7 +130,9 @@ function fpwai_register_settings() {
 			'show_in_rest'      => false,
 		)
 	);
+
 	add_settings_section( 'fpwai_main', '', '__return_false', 'fpwai' );
+
 	foreach ( fpwai_fields() as $key => $field ) {
 		add_settings_field(
 			$key,
@@ -111,14 +149,27 @@ function fpwai_register_settings() {
 	}
 }
 
+/**
+ * Sanitize callback for settings save.
+ *
+ * @param mixed $input Raw input.
+ * @return array
+ */
 function fpwai_save_settings( $input ) {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return get_option( FPWAI_OPTION, array() );
 	}
+
 	// options.php verifies the Settings API nonce before invoking this callback.
 	return fpwai_normalize_settings( $input, true );
 }
 
+/**
+ * Render one settings field.
+ *
+ * @param array $args Field arguments.
+ * @return void
+ */
 function fpwai_render_field( $args ) {
 	$settings = fpwai_settings();
 	$key      = $args['key'];
@@ -126,55 +177,86 @@ function fpwai_render_field( $args ) {
 	$value    = $settings[ $key ];
 	$name     = FPWAI_OPTION . '[' . $key . ']';
 	$id       = 'fpwai-' . $key;
+
 	if ( 'icon' === $key ) {
 		echo '<fieldset class="fpwai-icon-picker"><legend class="screen-reader-text">' . esc_html( $field[1] ) . '</legend>';
+
 		foreach ( $field[3] as $choice => $label ) {
-			$choice_id = 'download' === $choice ? $id : $id . '-' . $choice;
+			$choice_id = ( 'download' === $choice ) ? $id : $id . '-' . $choice;
+
 			echo '<label class="fpwai-icon-choice" title="' . esc_attr( $label ) . '">';
 			echo '<input type="radio" id="' . esc_attr( $choice_id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $choice ) . '" ' . checked( $value, $choice, false ) . '>';
 			echo '<span class="fpwai-icon-preview">';
 			fpwai_render_icon( $choice );
 			echo '</span><span class="screen-reader-text">' . esc_html( $label ) . '</span></label>';
 		}
+
 		echo '</fieldset>';
 		return;
 	}
+
 	if ( 'select' === $field[0] ) {
 		echo '<select id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '">';
+
 		foreach ( $field[3] as $choice => $label ) {
 			echo '<option value="' . esc_attr( $choice ) . '" ' . selected( $value, $choice, false ) . '>' . esc_html( $label ) . '</option>';
 		}
+
 		echo '</select>';
 		return;
 	}
+
 	if ( 'checkbox' === $field[0] ) {
 		echo '<input type="hidden" name="' . esc_attr( $name ) . '" value="0">';
 		echo '<input type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="1" ' . checked( $value, true, false ) . '>';
 		return;
 	}
+
 	echo '<input type="' . esc_attr( $field[0] ) . '" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '"';
+
 	if ( 'number' === $field[0] ) {
 		echo ' min="' . esc_attr( $field[3][0] ) . '" max="' . esc_attr( $field[3][1] ) . '" step="1"';
 	}
+
 	if ( in_array( $field[0], array( 'color', 'number' ), true ) || 'trigger_id' === $key ) {
 		echo ' dir="ltr"';
 	}
+
 	echo '>';
 }
 
 add_action( 'admin_enqueue_scripts', 'fpwai_admin_assets' );
+
+/**
+ * Enqueue admin assets for plugin settings page.
+ *
+ * @param string $hook_suffix Current admin page hook suffix.
+ * @return void
+ */
 function fpwai_admin_assets( $hook_suffix ) {
 	if ( 'toplevel_page_fpwai' !== $hook_suffix || ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
+
 	wp_enqueue_style( 'fpwai-admin', FPWAI_URL . 'assets/css/admin.css', array(), FPWAI_VERSION );
 }
 
 add_action( 'admin_menu', 'fpwai_admin_menu' );
+
+/**
+ * Register top-level admin menu item.
+ *
+ * @return void
+ */
 function fpwai_admin_menu() {
 	add_menu_page( __( 'Floating PWA Installer', 'tehranwebseo-pwa-installer' ), __( 'Floating PWA Installer', 'tehranwebseo-pwa-installer' ), 'manage_options', 'fpwai', 'fpwai_settings_page', 'dashicons-download', 65.1 );
 }
 
+/**
+ * Render plugin settings page.
+ *
+ * @return void
+ */
 function fpwai_settings_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
