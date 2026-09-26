@@ -30,7 +30,18 @@ function fpwai_fields() {
 		'radius'              => array( 'number', __( 'Border radius (px)', 'tehranwebseo-pwa-installer' ), 28, array( 0, 200 ) ),
 		'button_text'         => array( 'text', __( 'Button text', 'tehranwebseo-pwa-installer' ), __( 'نصب برنامه', 'tehranwebseo-pwa-installer' ) ),
 		'show_icon'           => array( 'checkbox', __( 'Show button icon', 'tehranwebseo-pwa-installer' ), true ),
-		'icon'                => array( 'select', __( 'Button icon', 'tehranwebseo-pwa-installer' ), 'download', array( 'download' => __( 'Download', 'tehranwebseo-pwa-installer' ), 'plus' => __( 'Plus', 'tehranwebseo-pwa-installer' ), 'smartphone' => __( 'Smartphone', 'tehranwebseo-pwa-installer' ), 'monitor' => __( 'Monitor', 'tehranwebseo-pwa-installer' ), 'download-circle' => __( 'Circled download arrow', 'tehranwebseo-pwa-installer' ) ) ),
+		'icon'                => array(
+			'select',
+			__( 'Button icon', 'tehranwebseo-pwa-installer' ),
+			'download',
+			array(
+				'download'        => __( 'Download', 'tehranwebseo-pwa-installer' ),
+				'plus'            => __( 'Plus', 'tehranwebseo-pwa-installer' ),
+				'smartphone'      => __( 'Smartphone', 'tehranwebseo-pwa-installer' ),
+				'monitor'         => __( 'Monitor', 'tehranwebseo-pwa-installer' ),
+				'download-circle' => __( 'Circled download arrow', 'tehranwebseo-pwa-installer' ),
+			),
+		),
 		'trigger_id'          => array( 'text', __( 'Custom trigger ID (without #)', 'tehranwebseo-pwa-installer' ), 'pwa-install-trigger' ),
 		'theme_color'         => array( 'color', __( 'Manifest theme color', 'tehranwebseo-pwa-installer' ), '#2563eb' ),
 		'background_color'    => array( 'color', __( 'Manifest background color', 'tehranwebseo-pwa-installer' ), '#ffffff' ),
@@ -74,10 +85,29 @@ function fpwai_normalize_settings( $input, $submission = false ) {
 
 add_action( 'admin_init', 'fpwai_register_settings' );
 function fpwai_register_settings() {
-	register_setting( 'fpwai', FPWAI_OPTION, array( 'type' => 'array', 'sanitize_callback' => 'fpwai_save_settings', 'show_in_rest' => false ) );
+	register_setting(
+		'fpwai',
+		FPWAI_OPTION,
+		array(
+			'type'              => 'array',
+			'sanitize_callback' => 'fpwai_save_settings',
+			'show_in_rest'      => false,
+		)
+	);
 	add_settings_section( 'fpwai_main', '', '__return_false', 'fpwai' );
 	foreach ( fpwai_fields() as $key => $field ) {
-		add_settings_field( $key, $field[1], 'fpwai_render_field', 'fpwai', 'fpwai_main', array( 'key' => $key, 'field' => $field, 'label_for' => 'fpwai-' . $key ) );
+		add_settings_field(
+			$key,
+			$field[1],
+			'fpwai_render_field',
+			'fpwai',
+			'fpwai_main',
+			array(
+				'key'       => $key,
+				'field'     => $field,
+				'label_for' => 'fpwai-' . $key,
+			)
+		);
 	}
 }
 
@@ -187,4 +217,3 @@ function fpwai_settings_page() {
 	submit_button();
 	echo '</form></div>';
 }
-

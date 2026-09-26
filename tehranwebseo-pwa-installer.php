@@ -40,7 +40,11 @@ function fpwai_scope() {
 }
 
 function fpwai_endpoint( $resource ) {
-	$paths = array( 'manifest' => 'manifest.webmanifest', 'worker' => 'sw.js', 'icon' => 'fpwai-icon.svg' );
+	$paths = array(
+		'manifest' => 'manifest.webmanifest',
+		'worker'   => 'sw.js',
+		'icon'     => 'fpwai-icon.svg',
+	);
 	if ( ! isset( $paths[ $resource ] ) ) {
 		return '';
 	}
@@ -58,7 +62,11 @@ function fpwai_query_vars( $vars ) {
 
 add_action( 'parse_request', 'fpwai_serve_resource', 0 );
 function fpwai_serve_resource( $request ) {
-	$paths    = array( 'manifest.webmanifest' => 'manifest', 'sw.js' => 'worker', 'fpwai-icon.svg' => 'icon' );
+	$paths    = array(
+		'manifest.webmanifest' => 'manifest',
+		'sw.js'                => 'worker',
+		'fpwai-icon.svg'       => 'icon',
+	);
 	$resource = $paths[ trim( $request->request, '/' ) ] ?? ( $request->query_vars['fpwai_resource'] ?? '' );
 	if ( ! is_string( $resource ) || ! in_array( $resource, array( 'manifest', 'worker', 'icon' ), true ) ) {
 		return;

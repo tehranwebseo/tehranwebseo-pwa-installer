@@ -10,7 +10,11 @@ function fpwai_manifest_icons() {
 		foreach ( array( array( 192, 192 ), array( 512, 512 ), 'full' ) as $size ) {
 			$image = wp_get_attachment_image_src( $attachment, $size );
 			if ( $image && $image[1] === $image[2] && $image[1] >= 192 ) {
-				$icons[ $image[1] ] = array( 'src' => esc_url_raw( $image[0] ), 'sizes' => $image[1] . 'x' . $image[2], 'purpose' => 'any' );
+				$icons[ $image[1] ] = array(
+					'src'     => esc_url_raw( $image[0] ),
+					'sizes'   => $image[1] . 'x' . $image[2],
+					'purpose' => 'any',
+				);
 			}
 		}
 		if ( $icons ) {
@@ -18,7 +22,12 @@ function fpwai_manifest_icons() {
 		}
 	}
 	if ( ! $icons ) {
-		$icons[] = array( 'src' => fpwai_endpoint( 'icon' ), 'sizes' => 'any', 'type' => 'image/svg+xml', 'purpose' => 'any' );
+		$icons[] = array(
+			'src'     => fpwai_endpoint( 'icon' ),
+			'sizes'   => 'any',
+			'type'    => 'image/svg+xml',
+			'purpose' => 'any',
+		);
 	}
 	return array_values( $icons );
 }

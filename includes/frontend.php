@@ -12,7 +12,7 @@ function fpwai_enqueue() {
 	}
 	wp_enqueue_style( 'fpwai', FPWAI_URL . 'assets/css/pwa-button.css', array(), FPWAI_VERSION );
 	wp_enqueue_script( 'fpwai', FPWAI_URL . 'assets/js/pwa-install.js', array(), FPWAI_VERSION, false );
-	$css = '#fpwai-button{--fpwai-bg:' . $settings['background'] . ';--fpwai-fg:' . $settings['foreground'] . ';--fpwai-hover-bg:' . $settings['hover_background'] . ';--fpwai-hover-fg:' . $settings['hover_foreground'] . ';border-radius:' . $settings['radius'] . 'px;' . fpwai_position_css( $settings, 'desktop' ) . fpwai_padding_css( $settings, 'desktop' ) . '}';
+	$css  = '#fpwai-button{--fpwai-bg:' . $settings['background'] . ';--fpwai-fg:' . $settings['foreground'] . ';--fpwai-hover-bg:' . $settings['hover_background'] . ';--fpwai-hover-fg:' . $settings['hover_foreground'] . ';border-radius:' . $settings['radius'] . 'px;' . fpwai_position_css( $settings, 'desktop' ) . fpwai_padding_css( $settings, 'desktop' ) . '}';
 	$css .= '@media(max-width:' . $settings['breakpoint'] . 'px){#fpwai-button{' . fpwai_position_css( $settings, 'mobile' ) . fpwai_padding_css( $settings, 'mobile' ) . '}}';
 	wp_add_inline_style( 'fpwai', $css );
 	wp_localize_script(
@@ -52,7 +52,7 @@ function fpwai_render_icon( $icon ) {
 		'monitor'         => 'M3 3h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM12 17v4M8 21h8',
 		'download-circle' => 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM12 7v10M8 13l4 4 4-4',
 	);
-	$path = $paths[ $icon ] ?? $paths['download'];
+	$path  = $paths[ $icon ] ?? $paths['download'];
 	echo '<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="' . esc_attr( $path ) . '"/></svg>';
 }
 
