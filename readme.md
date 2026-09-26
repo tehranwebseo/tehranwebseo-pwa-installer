@@ -34,7 +34,7 @@ Developed by **Tehran Web SEO**.
 
 Custom trigger example:
 ```html
-<button type="button" id="
+<button type="button" id="pwa-install-trigger">Install</button>
 ```
 
 ### ⚙️ Compatibility Notes
@@ -106,8 +106,9 @@ Developed by **Tehran Web SEO**.
 - تنظیمات با رویکرد Sanitization
 
 نمونه Trigger سفارشی:
-
+```html
 <button type="button" id="pwa-install-trigger">نصب اپلیکیشن</button>
+```
 
 ### ⚙️ نکات سازگاری
 - برای نصب PWA، داشتن **HTTPS** ضروری است
