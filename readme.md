@@ -48,7 +48,6 @@ Custom trigger example:
 2. Activate **Floating PWA Installer**
 3. Open plugin settings in admin menu
 4. Configure button style/position and optional endpoints
-5. Use a square icon of at least **512×512**
 
 ### 🧪 QA Checklist
 - Endpoint MIME types
@@ -85,10 +84,13 @@ Developed by **Tehran Web SEO**.
 
 ## 🇮🇷 فارسی
 
-افزونه **Floating PWA Installer** سایت وردپرسی شما را به تجربه‌ای قابل نصب (App-like) تبدیل می‌کند:
-- دکمه شناور نصب
-- تریگر سفارشی
-- اندپوینت‌های اختیاری و امن برای Manifest / Service Worker / Icon
+افزونه **دکمه نصب وب‌ اپلیکیشن** کاری می‌کند که کاربر بتواند سایت وردپرسی شما را مثل یک اپ روی گوشی یا دسکتاپ نصب کند.
+
+امکانات اصلی:
+
+یک دکمه شناور برای نصب سایت
+امکان وصل کردن نصب به دکمه دلخواه شما
+لینک‌های امن و اختیاری برای فایل‌های لازم PWA (مثل Manifest، Service Worker و آیکن)
 
 توسعه‌یافته توسط **تهران وب سئو**.
 
@@ -121,10 +123,9 @@ Developed by **Tehran Web SEO**.
 2. افزونه را فعال کنید
 3. وارد تنظیمات **Floating PWA Installer** شوید
 4. استایل/موقعیت دکمه و اندپوینت‌ها را تنظیم کنید
-5. از آیکن مربعی حداقل **۵۱۲×۵۱۲** استفاده کنید
 
-### 🧪 چک‌لیست QA
-- MIME type اندپوینت‌ها
+### 🧪 چک‌لیست تضمین کیفیت (QA)
+- بررسی نوع محتوای (MIME Type) آدرس‌های خروجی (Endpoints)
 - فرایند نصب روی HTTPS
 - عملکرد Trigger سفارشی
 - مخفی شدن دکمه بعد از `appinstalled`
@@ -136,7 +137,7 @@ Developed by **Tehran Web SEO**.
 - حذف داده‌ها فقط با uninstall opt-in
 
 ### 🔐 امنیت و کیفیت کد
-- Sanitization تنظیمات
+- پاکسازی Sanitization تنظیمات
 - Escape خروجی‌های ادمین
 - کنترل دقیق اندپوینت‌ها
 - بهبودهای WPCS و مستندسازی
