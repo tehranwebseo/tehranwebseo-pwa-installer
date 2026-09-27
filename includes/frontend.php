@@ -28,7 +28,9 @@ function fpwai_enqueue() {
 	wp_enqueue_style( 'fpwai', FPWAI_URL . 'assets/css/pwa-button.css', array(), FPWAI_VERSION );
 	wp_enqueue_script( 'fpwai', FPWAI_URL . 'assets/js/pwa-install.js', array(), FPWAI_VERSION, false );
 
-	$css  = '#fpwai-button{--fpwai-bg:' . $settings['background'] . ';--fpwai-fg:' . $settings['foreground'] . ';--fpwai-hover-bg:' . $settings['hover_background'] . ';--fpwai-hover-fg:' . $settings['hover_foreground'] . ';border-radius:' . $settings['radius'] . 'px;' . fpwai_position_css( $settings, 'desktop' ) . fpwai_padding_css( $settings, 'desktop' ) . '}';
+	$min_width_css = fpwai_min_width_css( $settings );
+
+	$css  = '#fpwai-button{--fpwai-bg:' . $settings['background'] . ';--fpwai-fg:' . $settings['foreground'] . ';--fpwai-hover-bg:' . $settings['hover_background'] . ';--fpwai-hover-fg:' . $settings['hover_foreground'] . ';border-radius:' . $settings['radius'] . 'px;' . $min_width_css . fpwai_position_css( $settings, 'desktop' ) . fpwai_padding_css( $settings, 'desktop' ) . '}';
 	$css .= '@media(max-width:' . $settings['breakpoint'] . 'px){#fpwai-button{' . fpwai_position_css( $settings, 'mobile' ) . fpwai_padding_css( $settings, 'mobile' ) . '}}';
 
 	wp_add_inline_style( 'fpwai', $css );
@@ -50,6 +52,20 @@ function fpwai_enqueue() {
 			),
 		)
 	);
+}
+
+/**
+ * Build min-width CSS for floating button.
+ *
+ * @param array $settings Plugin settings.
+ * @return string
+ */
+function fpwai_min_width_css( $settings ) {
+	if ( empty( $settings['min_width_enabled'] ) || empty( $settings['min_width'] ) ) {
+		return '';
+	}
+
+	return 'min-width:' . $settings['min_width'] . ';';
 }
 
 /**

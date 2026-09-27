@@ -40,7 +40,7 @@ function fpwai_fields() {
 		'hover_background'    => array( 'color', __( 'Hover background', 'tehranwebseo-pwa-installer' ), '#1d4ed8' ),
 		'hover_foreground'    => array( 'color', __( 'Hover text color', 'tehranwebseo-pwa-installer' ), '#ffffff' ),
 		'radius'              => array( 'number', __( 'Border radius (px)', 'tehranwebseo-pwa-installer' ), 28, array( 0, 200 ) ),
-		'button_text'         => array( 'text', __( 'Button text', 'tehranwebseo-pwa-installer' ), __( 'نصب برنامه', 'tehranwebseo-pwa-installer' ) ),
+		'button_text'         => array( 'text', __( 'Button text', 'tehranwebseo-pwa-installer' ), __( 'Install app', 'tehranwebseo-pwa-installer' ) ),
 		'show_icon'           => array( 'checkbox', __( 'Show button icon', 'tehranwebseo-pwa-installer' ), true ),
 		'icon'                => array(
 			'select',
@@ -54,6 +54,8 @@ function fpwai_fields() {
 				'download-circle' => __( 'Circled download arrow', 'tehranwebseo-pwa-installer' ),
 			),
 		),
+		'min_width_enabled'   => array( 'checkbox', __( 'Enable minimum width', 'tehranwebseo-pwa-installer' ), false ),
+		'min_width'           => array( 'text', __( 'Minimum width value', 'tehranwebseo-pwa-installer' ), '' ),
 		'trigger_id'          => array( 'text', __( 'Custom trigger ID (without #)', 'tehranwebseo-pwa-installer' ), 'pwa-install-trigger' ),
 		'theme_color'         => array( 'color', __( 'Manifest theme color', 'tehranwebseo-pwa-installer' ), '#2563eb' ),
 		'background_color'    => array( 'color', __( 'Manifest background color', 'tehranwebseo-pwa-installer' ), '#ffffff' ),
@@ -102,6 +104,15 @@ function fpwai_normalize_settings( $input, $submission = false ) {
 
 				if ( 'trigger_id' === $key ) {
 					$value = preg_replace( '/[\s#<>"\x27]/u', '', $value );
+				} elseif ( 'min_width' === $key ) {
+					$value = trim( $value );
+
+					// Accept only safe CSS length tokens (or auto).
+					if ( '' === $value ) {
+						$value = '';
+					} elseif ( ! preg_match( '/^(auto|[0-9]+(\.[0-9]+)?(px|%|rem|em|vw))$/', $value ) ) {
+						$value = '';
+					}
 				} elseif ( '' === $value ) {
 					$value = $field[2];
 				}
@@ -209,6 +220,10 @@ function fpwai_render_field( $args ) {
 	if ( 'checkbox' === $field[0] ) {
 		echo '<input type="hidden" name="' . esc_attr( $name ) . '" value="0">';
 		echo '<input type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="1" ' . checked( $value, true, false ) . '>';
+
+		if ( 'min_width_enabled' === $key ) {
+			echo '<p class="description">' . esc_html__( 'Disabled by default. Enable to apply min-width on the floating button.', 'tehranwebseo-pwa-installer' ) . '</p>';
+		}
 		return;
 	}
 
@@ -223,6 +238,10 @@ function fpwai_render_field( $args ) {
 	}
 
 	echo '>';
+
+	if ( 'min_width' === $key ) {
+		echo '<p class="description">' . esc_html__( 'Examples: 120px, 40%, 12rem, auto', 'tehranwebseo-pwa-installer' ) . '</p>';
+	}
 }
 
 add_action( 'admin_enqueue_scripts', 'fpwai_admin_assets' );

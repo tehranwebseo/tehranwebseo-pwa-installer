@@ -13,194 +13,158 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Domain: tehranwebseo-pwa-installer\n"
 
-#: includes/admin-settings.php:6
 msgid "Bottom end"
 msgstr "پایین چپ (در چیدمان راست‌به‌چپ)"
 
-#: includes/admin-settings.php:7
 msgid "Bottom start"
 msgstr "پایین راست (در چیدمان راست‌به‌چپ)"
 
-#: includes/admin-settings.php:8
 msgid "Top end"
 msgstr "بالا چپ (در چیدمان راست‌به‌چپ)"
 
-#: includes/admin-settings.php:9
 msgid "Top start"
 msgstr "بالا راست (در چیدمان راست‌به‌چپ)"
 
-#: includes/admin-settings.php:12
 msgid "Enable installer"
 msgstr "فعال‌سازی قابلیت نصب برنامه"
 
-#: includes/admin-settings.php:13
 msgid "Provide manifest and service worker"
 msgstr "مدیریت مانیفست و سرویس‌ورکر توسط این افزونه"
 
-#: includes/admin-settings.php:14
 msgid "Show floating button"
 msgstr "نمایش دکمه شناور"
 
-#: includes/admin-settings.php:15
 msgid "Desktop corner"
 msgstr "محل نمایش دکمه در دسکتاپ"
 
-#: includes/admin-settings.php:16
 msgid "Desktop horizontal offset (px)"
 msgstr "فاصله افقی از لبه صفحه در دسکتاپ (پیکسل)"
 
-#: includes/admin-settings.php:17
 msgid "Desktop vertical offset (px)"
 msgstr "فاصله عمودی از لبه صفحه در دسکتاپ (پیکسل)"
 
-#: includes/admin-settings.php:20
 msgid "Mobile corner"
 msgstr "محل نمایش دکمه در موبایل"
 
-#: includes/admin-settings.php:21
 msgid "Mobile horizontal offset (px)"
 msgstr "فاصله افقی از لبه صفحه در موبایل (پیکسل)"
 
-#: includes/admin-settings.php:22
 msgid "Mobile vertical offset (px)"
 msgstr "فاصله عمودی از لبه صفحه در موبایل (پیکسل)"
 
-#: includes/admin-settings.php:25
 msgid "Mobile breakpoint (px)"
 msgstr "حداکثر عرض صفحه برای چیدمان موبایل (پیکسل)"
 
-#: includes/admin-settings.php:26
 msgid "Button background"
 msgstr "رنگ پس‌زمینه دکمه"
 
-#: includes/admin-settings.php:27
 msgid "Button text color"
 msgstr "رنگ متن دکمه"
 
-#: includes/admin-settings.php:28
 msgid "Hover background"
 msgstr "رنگ پس‌زمینه دکمه هنگام قرار گرفتن نشانگر روی آن"
 
-#: includes/admin-settings.php:29
 msgid "Hover text color"
 msgstr "رنگ متن دکمه هنگام قرار گرفتن نشانگر روی آن"
 
-#: includes/admin-settings.php:30
 msgid "Border radius (px)"
 msgstr "شعاع گردی گوشه‌های دکمه (پیکسل)"
 
-#: includes/admin-settings.php:31
 msgid "Button text"
 msgstr "متن دکمه"
 
-#: includes/admin-settings.php:31
 msgid "نصب برنامه"
 msgstr "نصب برنامه"
 
-#: includes/admin-settings.php:32
 msgid "Show button icon"
 msgstr "نمایش آیکون دکمه"
 
-#: includes/admin-settings.php:33
 msgid "Button icon"
 msgstr "آیکون دکمه"
 
-#: includes/admin-settings.php:33
 msgid "Download"
 msgstr "پیکان دانلود"
 
-#: includes/admin-settings.php:33
 msgid "Plus"
 msgstr "علامت به‌علاوه"
 
-#: includes/admin-settings.php:33
 msgid "Smartphone"
 msgstr "گوشی موبایل"
 
-#: includes/admin-settings.php:33
 msgid "Monitor"
 msgstr "نمایشگر"
 
-#: includes/admin-settings.php:33
 msgid "Circled download arrow"
 msgstr "پیکان دانلود دایره‌ای"
 
-#: includes/admin-settings.php:34
 msgid "Custom trigger ID (without #)"
 msgstr "شناسه دکمه یا لینک دلخواه برای نصب (بدون #)"
 
-#: includes/admin-settings.php:35
 msgid "Manifest theme color"
 msgstr "رنگ اصلی برنامه در مانیفست"
 
-#: includes/admin-settings.php:36
 msgid "Manifest background color"
 msgstr "رنگ پس‌زمینه برنامه در مانیفست"
 
-#: includes/admin-settings.php:37
 msgid "Delete settings on uninstall"
 msgstr "پاک‌کردن تنظیمات هنگام حذف افزونه"
 
-#: tehranwebseo-pwa-installer.php:3 includes/admin-settings.php:124 includes/admin-settings.php:131
 msgid "Floating PWA Installer"
 msgstr "دکمه نصب وب‌ اپلیکیشن"
 
-#: tehranwebseo-pwa-installer.php:4
 msgid "Accessible floating PWA installation with an optional manifest and service worker."
 msgstr "دکمه شناور و دسترس‌پذیر برای نصب وب‌ اپلیکیشن، با امکان فعال‌سازی مانیفست و سرویس‌ورکر."
 
-#: includes/admin-settings.php:132
 msgid "The button is not shown to users who have already installed the app."
 msgstr "دکمه برای کاربرانی که برنامه را نصب کرده‌اند نمایش داده نمی‌شود."
 
-#: includes/admin-settings.php:134
 msgid "Disable manifest and service worker management when another PWA solution is active."
 msgstr "اگر از افزونه یا ابزار دیگری برای وب‌ اپلیکیشن استفاده می‌کنید، مدیریت مانیفست و سرویس‌ورکر را در این افزونه غیرفعال کنید."
 
-#: includes/frontend.php:28
 msgid "To install this app, tap Share, then Add to Home Screen."
 msgstr "برای نصب برنامه، ابتدا دکمه «اشتراک‌گذاری» (Share) و سپس گزینه «افزودن به صفحه اصلی» (Add to Home Screen) را لمس کنید."
 
-#: includes/frontend.php:29
 msgid "Installation is not available right now. If supported, use your browser menu to install this app or add it to your home screen."
 msgstr "در حال حاضر نمی‌توان برنامه را از این دکمه نصب کرد. اگر مرورگرتان از نصب برنامه پشتیبانی می‌کند، از منوی آن گزینه نصب برنامه یا افزودن به صفحه اصلی را انتخاب کنید."
 
-#: includes/frontend.php:30
 msgid "Close"
 msgstr "بستن"
 
-#: includes/frontend.php:31
 msgid "Install app"
 msgstr "نصب برنامه"
 
-#: includes/admin-settings.php:18
 msgid "Desktop horizontal padding (px)"
 msgstr "فاصله داخلی افقی دکمه در دسکتاپ (پیکسل)"
 
-#: includes/admin-settings.php:19
 msgid "Desktop vertical padding (px)"
 msgstr "فاصله داخلی عمودی دکمه در دسکتاپ (پیکسل)"
 
-#: includes/admin-settings.php:23
 msgid "Mobile horizontal padding (px)"
 msgstr "فاصله داخلی افقی دکمه در موبایل (پیکسل)"
 
-#: includes/admin-settings.php:24
 msgid "Mobile vertical padding (px)"
 msgstr "فاصله داخلی عمودی دکمه در موبایل (پیکسل)"
 
-#: includes/admin-settings.php:999
 msgid "Created by Tehran Web SEO"
 msgstr "ارائه‌ شده توسط تهران وب سئو"
 
-#: includes/admin-settings.php:999
 msgid "Need professional WordPress, WooCommerce, and technical SEO solutions?"
 msgstr "به خدمات حرفه‌ ای وردپرس، طراحی سایت و سئو نیاز دارید؟"
 
-#: includes/admin-settings.php:999
 msgid "Visit TehranWebSEO.ir"
 msgstr "مشاهده TehranWebSEO.ir"
 
-#: includes/admin-settings.php:999
 msgid "Important notes:"
 msgstr "نکات مهم:"
+
+msgid "Enable minimum width"
+msgstr "فعال‌سازی حداقل عرض"
+
+msgid "Minimum width value"
+msgstr "مقدار حداقل عرض"
+
+msgid "Disabled by default. Enable to apply min-width on the floating button."
+msgstr "به‌صورت پیش‌فرض غیرفعال است. برای اعمال حداقل عرض روی دکمه شناور، آن را فعال کنید."
+
+msgid "Examples: 120px, 40%, 12rem, auto"
+msgstr "مثال: 120px، 40%، 12rem، auto"
